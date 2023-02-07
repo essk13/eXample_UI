@@ -7,6 +7,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-postcss',
     '@storybook/addon-interactions',
+    'storybook-addon-designs',
   ],
   features: {
     buildStoriesJson: true,

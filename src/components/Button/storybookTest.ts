@@ -22,5 +22,12 @@ export function runTest(story: ComponentStory<typeof Button>): ComponentStory<ty
     expect(button).not.toHaveFocus();
   };
 
+  story.parameters = {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/AcuzZ6ORFgI6bs5H8KMAd5/Untitled?node-id=12%3A2&t=2oI3SurHvvl0QsrB-0',
+    },
+  };
+
   return story;
 }

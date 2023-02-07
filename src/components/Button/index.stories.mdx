@@ -1,8 +1,9 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
 import { runTest } from './storybookTest.ts';
 import { Button } from './index.tsx';
 import { Alert } from '../../assets/Icon/generated/Alert';
 import { button, spacing, icon, pickPropsInObj, eventHandler, borderless, disabled } from '../../storybook-props/';
+import { withDesign } from 'storybook-addon-designs';
 
 <Meta
   title="Components/Button/Button"
@@ -31,6 +32,14 @@ export const Template = (args) => <Button {...args} />;
 # Button
 
 `Button`컴포넌트의 크기는 `children`의 내용과 `size`프로퍼티에 따른 `padding`값에 의해 결정됩니다.
+
+## 사용 방법
+
+<Source
+  language="js"
+  dark
+  code={`import { Button } from 'example-ui';`}
+/>
 
 <Canvas>
   <Story name="default" args={{ children: 'default', role: 'button' }}>
@@ -67,6 +76,7 @@ export const Template = (args) => <Button {...args} />;
   </Story>
 </Canvas>
 
+
 ### various size
 
 버튼의 패딩이 증감됩니다.
@@ -100,7 +110,7 @@ export const Template = (args) => <Button {...args} />;
 
 아이콘의 색상도 버튼의 색상에 따라 바뀝니다.
 
-*loplat UI 에서 제공하는 아이콘을 사용*하는 것을 권장합니다.
+*eXample UI 에서 제공하는 아이콘을 사용*하는 것을 권장합니다.
 
 <Canvas>
   <Story name="left icon primary2" args={{ children: 'left icon', leftIcon: <Alert />, color: 'primary2' }}>

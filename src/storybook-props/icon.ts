@@ -4,7 +4,7 @@ const category = 'icon';
 const iconTable = generateTable({
   category,
   type: 'React.ReactElement',
-  detail: '`loplat ui`의 아이콘을 사용할 것을 권장합니다.',
+  detail: '`eXample ui`의 아이콘을 사용할 것을 권장합니다.',
 });
 const initialIconDescription = {
   ...iconTable,
