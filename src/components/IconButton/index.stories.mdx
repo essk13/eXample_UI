@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { IconButton } from './index.tsx';
+import { Campaign as CampaignIcon } from '../../assets/Icon/generated/Campaign.tsx';
+import { spacing, borderless, disabled, pickPropsInObj, eventHandler } from '../../storybook-props/';
+
+<Meta
+  title="Components/Button/IconButton"
+  component={IconButton}
+  argTypes={{
+    ...borderless,
+    ...disabled('button'),
+    ...spacing('margin'),
+    ...pickPropsInObj(eventHandler, 'onClick'),
+    children: {
+      description: '아이콘 컴포넌트를 작성해주세요.',
+      table: { type: { summary: 'React.ReactElement' } },
+    },
+  }}
+/>
+
+export const Template = (args) => <IconButton {...args} children={<CampaignIcon />} aria-label="캠페인" />;
+
+# IconButton
+
+아이콘만 있는 버튼컴포넌트입니다.
+
+*loplat UI 에서 제공하는 아이콘을 사용*하는 것을 권장합니다.
+
+<Canvas>
+  <Story name="default">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+### color
+
+`Button`과 동일한 팔레트를 가집니다.
+
+<Canvas>
+  <Story name="primary1" args={{ color: 'primary1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="primary2" args={{ color: 'primary2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger1" args={{ color: 'danger1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger2" args={{ color: 'danger2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="solid" args={{ color: 'solid' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="ghost" args={{ color: 'ghost' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### borderless
+
+`Button` 컴포넌트의 `borderless` 프로퍼티와 동일한 효과를 가집니다.
+
+<Canvas>
+  <Story name="primary2 borderless" args={{ color: 'primary2', borderless: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger2 borderless" args={{ color: 'danger2', borderless: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

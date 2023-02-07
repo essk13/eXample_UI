@@ -1,0 +1,105 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { runTest } from './storybookTest.ts';
+import { Input } from './index';
+import { Campaign } from '../../assets/Icon/generated/Campaign.tsx';
+import { red300 } from '../../core/colors/red';
+import { bluescale500 } from '../../core/colors/bluescale.ts';
+import { disabled as disabledProp, icon, pickPropsInObj, eventHandler, spacing } from '../../storybook-props/';
+
+<Meta
+  title="Components/Input"
+  component={Input}
+  argTypes={{
+    value: { description: '`input` 상태를 연결해주세요.', type: 'string', table: { category: 'input' } },
+    id: {
+      description: '`label` 태그와 연동하기 위한 `input` 태그의 `id` 속성입니다.',
+      type: 'string',
+      table: { category: 'input' },
+    },
+    type: { description: '`input` 태그의 type 속성입니다.', type: 'string', table: { category: 'input' } },
+    autoComplete: {
+      description: '`input` 태그의 `autocomplete` 속성입니다.',
+      type: 'string',
+      table: { category: 'input' },
+    },
+    placeholder: {
+      description: '`input` 태그의 `placeholder` 속성입니다.',
+      type: 'string',
+      table: { category: 'input' },
+    },
+    className: { description: '`input` 태그의 `class` 속성입니다.', type: 'string', table: { category: 'input' } },
+    error: { description: '`true`일 때, `helperText` 가 빨간색으로 표시됩니다.' },
+    helperText: { description: '하단에 표시되는 문구입니다.' },
+    ...disabledProp('input', 'input'),
+    ...pickPropsInObj(icon, 'isIconVisible', 'rightIcon'),
+    ...pickPropsInObj(eventHandler, 'onKeyPress', 'onBlur', 'onFocus', 'onChange'),
+    ...spacing('margin'),
+    ...spacing('padding'),
+  }}
+/>
+
+export const Template = (args) => {
+  const [value, setValue] = useState(args.initialValue ?? '');
+  return (
+    <Input
+      placeholder="값을 입력해주세요"
+      error={value.length > 20}
+      helperText={value.length > 20 ? '20자 이하로 작성해주세요.' : ''}
+      {...args}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+};
+
+# Input
+
+<Canvas>
+  <Story name="default">{runTest(Template.bind({}))}</Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## Stories
+
+### disabled
+
+<Canvas>
+  <Story name="disabled" args={{ disabled: true, helperText: '수정할 수 없습니다.' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Right Icon
+
+아이콘이 있는 `Input` 컴포넌트입니다.
+
+<Canvas>
+  <Story
+    name="right icon"
+    args={{
+      rightIcon: <Campaign fillColor={bluescale500} size={30} />,
+      isIconVisible: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### error + right icon
+
+에러가 발생한 아이콘이 있는 `Input` 컴포넌트입니다.
+
+<Canvas>
+  <Story
+    name="right icon error"
+    args={{
+      initialValue: '20자 이상의 error가 발생하는 값',
+      rightIcon: <Campaign fillColor={red300} size={30} />,
+      isIconVisible: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -1,0 +1,125 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { runTest } from './storybookTest.ts';
+import { Button } from './index.tsx';
+import { Alert } from '../../assets/Icon/generated/Alert';
+import { button, spacing, icon, pickPropsInObj, eventHandler, borderless, disabled } from '../../storybook-props/';
+
+<Meta
+  title="Components/Button/Button"
+  component={Button}
+  argTypes={{
+    ...button,
+    ...borderless,
+    ...disabled('button'),
+    ...spacing('margin'),
+    ...pickPropsInObj(icon, 'leftIcon', 'rightIcon'),
+    ...pickPropsInObj(eventHandler, 'onClick'),
+    children: {
+      description: '버튼의 내용을 작성해주세요.',
+      table: {
+        type: {
+          summary: 'React.ReactElement',
+        },
+      },
+    },
+    fullWidth: { description: '`width: 100%`를 적용합니다.' },
+  }}
+/>
+
+export const Template = (args) => <Button {...args} />;
+
+# Button
+
+`Button`컴포넌트의 크기는 `children`의 내용과 `size`프로퍼티에 따른 `padding`값에 의해 결정됩니다.
+
+<Canvas>
+  <Story name="default" args={{ children: 'default', role: 'button' }}>
+    {runTest(Template.bind({}))}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+### color
+
+`IconButton`컴포넌트와 동일한 팔레트를 가집니다.
+
+<Canvas>
+  <Story name="primary1" args={{ children: 'primary1', color: 'primary1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="primary2" args={{ children: 'primary2', color: 'primary2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger1" args={{ children: 'danger1', color: 'danger1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger2" args={{ children: 'danger2', color: 'danger2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="solid" args={{ children: 'solid', color: 'solid' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="ghost" args={{ children: 'ghost', color: 'ghost' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### various size
+
+버튼의 패딩이 증감됩니다.
+
+<Canvas>
+  <Story name="xs" args={{ children: 'xs', size: 'xs' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="sm" args={{ children: 'sm', size: 'sm' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="md" args={{ children: 'md', size: 'md' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="lg" args={{ children: 'lg', size: 'lg' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### full width
+
+`width: 100%` 을 지원합니다.
+
+<Canvas>
+  <Story name="full width" args={{ children: 'full width', fullWidth: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### with Icon
+
+아이콘의 색상도 버튼의 색상에 따라 바뀝니다.
+
+*loplat UI 에서 제공하는 아이콘을 사용*하는 것을 권장합니다.
+
+<Canvas>
+  <Story name="left icon primary2" args={{ children: 'left icon', leftIcon: <Alert />, color: 'primary2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="left icon ghost" args={{ children: 'left icon', leftIcon: <Alert />, color: 'ghost' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="right icon danger2" args={{ children: 'right icon', rightIcon: <Alert />, color: 'danger2' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### borderless
+
+테두리가 없습니다.
+
+<Canvas>
+  <Story name="borderless button" args={{ children: 'primary2 borderless', color: 'primary2', borderless: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

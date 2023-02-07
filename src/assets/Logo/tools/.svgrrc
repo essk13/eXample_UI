@@ -1,0 +1,9 @@
+{
+  "expandProps": "end",
+  "dimensions": true,
+  "svgProps": {
+    "width": "{width}",
+    "height": "{width}",
+    "viewBox": "0 0 32 32"
+  }
+}

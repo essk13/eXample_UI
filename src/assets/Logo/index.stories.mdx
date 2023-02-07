@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { LoplatLogo, LoplatILogo, LoplatXLogo, LoplatXFullLogo } from './index';
+import { hideCanvas, spacing, generateTable } from '../../storybook-props/';
+
+<Meta
+  title="Assets/Logo"
+  component={LoplatLogo}
+  argTypes={{ width: { description: '`px` 단위입니다.' }, ...spacing('margin') }}
+  parameters={{
+    ...hideCanvas,
+  }}
+/>
+
+export const Template = (args) => <LoplatLogo {...args} />;
+
+# Logo
+
+**loplat 공식 로고**
+
+## loplat
+
+<Canvas>
+  <Story name="loplat" args={{ width: 200 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="loplat" />
+
+## loplat X
+
+#### loplat X FullLogo
+
+<Canvas>
+  <Story name="loplat X full">
+    <LoplatXFullLogo width="200" />
+  </Story>
+</Canvas>
+
+#### loplat X Logo
+
+<Canvas>
+  <Story name="loplat X">
+    <LoplatXLogo width="50" />
+  </Story>
+</Canvas>
+
+## loplat I Logo
+
+<Canvas>
+  <Story name="loplat i">
+    <LoplatILogo width="50" />
+  </Story>
+</Canvas>
